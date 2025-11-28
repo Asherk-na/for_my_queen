@@ -1,0 +1,139 @@
+:root {
+    --main-purple: #6a0dad;
+    --light-purple: #f6f3fb;
+    --accent-color: #ff9900;
+    --text-color: #2b2b2b;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    background-color: var(--light-purple);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    line-height: 1.45;
+}
+
+header {
+    background: linear-gradient(180deg, var(--main-purple), #5a0e8a);
+    color: #fff;
+    padding: 40px 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    position: relative;
+    overflow: hidden;
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+h1 { font-size: 2.2rem; margin: 0 0 8px 0; }
+.subtitle { margin: 0; opacity: 0.95; }
+
+#confetti-container { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.confetti { position: absolute; width: 10px; height: 10px; opacity: 0; animation: fall 5s linear infinite; }
+
+@keyframes fall { 0% { transform: translateY(-100px) rotate(0deg); opacity: 1; } 100% { transform: translateY(120vh) rotate(720deg); opacity: 0.2; } }
+
+main { padding: 24px 0 60px; }
+
+#notes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; padding: 20px; max-width: 1000px; margin: 20px auto; }
+
+.note { background: #fff; border: 1px solid rgba(106,13,173,0.12); padding: 15px; box-shadow: 0 6px 18px rgba(16,11,29,0.06); cursor: pointer; transition: transform 0.25s ease, box-shadow 0.25s; transform: rotate(calc(var(--i) * 1deg - 2deg)); }
+.note:hover { transform: scale(1.03) rotate(0deg); z-index: 10; }
+.note-header { font-weight: 700; color: var(--main-purple); margin-bottom: 6px; font-size: 1.05rem; }
+
+#shuffle-button, #unwrap-button, .open-when-card h4, #submit-quiz, #unlock-button { background-color: var(--main-purple); color: #fff; border: none; padding: 10px 16px; border-radius: 8px; cursor: pointer; }
+#shuffle-button:hover, #unwrap-button:hover, .open-when-card h4:hover, #submit-quiz:hover, #unlock-button:hover { background-color: #550a99; }
+
+.hidden-content { display: none; padding: 15px; border: 2px dashed rgba(106,13,173,0.12); margin-top: 10px; text-align: left; background-color: white; }
+
+.open-when-card { border: 1px solid #eee; border-radius: 10px; margin: 12px auto; max-width: 680px; box-shadow: 0 6px 14px rgba(18,12,32,0.04); overflow: hidden; }
+.open-when-card h4 { margin: 0; padding: 12px 16px; text-align: left; }
+
+.question-block { margin-bottom: 20px; padding: 15px; border-radius: 8px; background-color: #fff; max-width: 700px; margin-left: auto; margin-right: auto; text-align: left; }
+.question-block label { display: block; margin: 6px 0; cursor: pointer; }
+
+#submit-quiz { font-size: 1.05rem; }
+
+.surprise-link { display: inline-block; padding: 8px 12px; background: var(--accent-color); color: #fff; border-radius: 8px; text-decoration: none; }
+
+@media (max-width: 600px) {
+    h1 { font-size: 1.6rem; }
+    #notes-grid { grid-template-columns: 1fr; padding: 12px; }
+    .container { padding: 0 12px; }
+}
+/* end of stylesheet */
+
+/* --- Essay & poem tweaks --- */
+.essay { color: var(--text-color); font-size: 1.05rem; max-width: 900px; margin: 14px auto; text-align: left; line-height: 1.7; }
+.poem-stanzas p { margin: 6px 0; }
+
+/* --- Modal styles --- */
+#modal-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.45);
+    z-index: 9999;
+}
+.modal {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px 20px 16px 20px;
+    max-width: 520px;
+    width: 90%;
+    box-shadow: 0 12px 28px rgba(10,10,20,0.2);
+    text-align: left;
+    position: relative;
+}
+.modal-title { margin: 0 0 8px 0; color: var(--main-purple); font-size: 1.15rem; }
+.modal-body { color: #333; white-space: pre-wrap; }
+.modal-close { position: absolute; right: 14px; top: 8px; background: transparent; border: none; color: #333; font-size: 20px; cursor: pointer; }
+
+/* --- Gallery grid --- */
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; max-width: 1100px; margin: 18px auto; padding: 0 12px; }
+.gallery-item { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 8px 20px rgba(10,10,20,0.06); text-align: center; }
+.gallery-item img { width: 100%; height: 160px; object-fit: cover; display: block; cursor: pointer; }
+.gallery-item figcaption { padding: 8px 10px; font-size: 0.95rem; color: #444; }
+
+/* --- Gallery lightbox --- */
+#gallery-overlay { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,0.8); z-index: 10000; }
+.gallery-lightbox { position: relative; max-width: 950px; width: 92%; display: flex; align-items: center; justify-content: center; }
+.gallery-inner { background: #fff; border-radius: 10px; padding: 12px; box-shadow: 0 18px 50px rgba(0,0,0,0.4); max-height: 85vh; overflow: hidden; display:flex; flex-direction:column; align-items:center; }
+.gallery-current { max-width: 100%; max-height: 68vh; object-fit: contain; border-radius: 8px; }
+.gallery-caption { padding: 8px 10px; color: #333; font-size: 0.95rem; text-align: center; }
+.gallery-close, .gallery-prev, .gallery-next { background: transparent; border: none; color: #fff; font-size: 32px; cursor: pointer; padding: 8px 12px; }
+.gallery-prev, .gallery-next { position: absolute; top: 50%; transform: translateY(-50%); font-size: 42px; }
+.gallery-prev { left: 6px; }
+.gallery-next { right: 6px; }
+
+@media (max-width: 600px) {
+    .gallery-item img { height: 140px; }
+    .gallery-prev, .gallery-next { font-size: 30px; }
+}
+
+/* Fade animation and index badge */
+#gallery-overlay { opacity: 0; transition: opacity 240ms ease; }
+#gallery-overlay.open { opacity: 1; }
+.gallery-inner { transform: scale(0.98); transition: transform 200ms ease; }
+#gallery-overlay.open .gallery-inner { transform: scale(1); }
+.gallery-index { position: absolute; right: 12px; top: 10px; background: rgba(0,0,0,0.6); color: #fff; padding: 6px 10px; border-radius: 999px; font-size: 0.95rem; }
+
+/* Song note and YouTube link styling */
+.song-note { max-width: 720px; margin: 8px 0 12px; color: #333; font-style: italic; }
+.youtube-link { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--main-purple); text-decoration: none; padding: 6px 8px; border-radius: 8px; }
+.youtube-link svg { display: block; }
+.youtube-link:hover { text-decoration: underline; }
+
+/* Image & caption transitions for slideshow feel */
+.gallery-current { opacity: 1; transition: opacity 320ms ease; }
+.gallery-caption { opacity: 0; transform: translateY(6px); transition: opacity 260ms ease, transform 260ms ease; }
+.gallery-caption.visible { opacity: 1; transform: translateY(0); }
+
+
+
+
